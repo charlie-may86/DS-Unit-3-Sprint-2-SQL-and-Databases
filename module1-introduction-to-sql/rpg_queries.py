@@ -88,3 +88,30 @@ question5_query = 'SELECT character_id, COUNT(character_id) as TotalItems from c
 
 results5 = cursor.execute(question5_query).fetchall()
 print(results5)
+
+'''
+Question 6: How many Weapons does each character have? (Return first 20 rows)
+'''
+
+question6_query = 'SELECT cci.character_id, COUNT(cci.character_id) as TotalWeapons FROM charactercreator_character_inventory as cci JOIN armory_weapon as aw ON cci.item_id = aw.item_ptr_id GROUP BY cci.character_id ORDER BY COUNT(cci.character_id) DESC LIMIT 20;'
+
+results6 = cursor.execute(question6_query).fetchall()
+print(results6)
+
+'''
+Question 7: On average, how many Items does each Character have?
+'''
+
+question7_query = 'SELECT CAST(COUNT(character_id) as Float) / COUNT(DISTINCT(character_id)) as AverageItem from charactercreator_character_inventory;'
+
+results7 = cursor.execute(question7_query).fetchall()
+print(f'Characters have on average {results7} items')
+
+'''
+Questioin 8: On average, how many Weapons does each character have?
+'''
+
+question8_query = 'SELECT CAST(COUNT(cci.character_id) as FLOAT) / COUNT(DISTINCT(cci.character_id)) as AverageWeapons FROM charactercreator_character_inventory as cci JOIN armory_weapon as aw ON cci.item_id = aw.item_ptr_id;'
+
+results8 = cursor.execute(question8_query).fetchall()
+print(f'Characters have on average {results8} weapons')
