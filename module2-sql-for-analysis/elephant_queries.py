@@ -15,12 +15,30 @@ DB_HOST = os.getenv("DB_HOST")
 
 connection = psycopg2.connect(dbname=DB_NAME, user=DB_USER,
                         password=DB_PASSWORD, host=DB_HOST)
-print('CONNECTION', connection)
+# print('CONNECTION', connection)
 
 cursor = connection.cursor()
-print('CURSOR', cursor)
+# print('CURSOR', cursor)
 
-cursor.execute('SELECT * from test_table;')
+insertion_sql = '''
+INSERT INTO test_table (name, data) VALUES
+(
+  'A row name',
+  null
+),
+(
+  'Another row, with JSON',
+  '{ "a": 1, "b": ["dog", "cat", 42], "c": true }'::JSONB
+);
+'''
 
-results = cursor.fetchall()
-print(results)
+cursor.execute(insertion_sql)
+
+# ACTUALLY SAVE THE TRANSACTIONS
+connection.commit()
+
+cursor.close()
+connection.close()
+
+# results = cursor.fetchall()
+# print(results)
