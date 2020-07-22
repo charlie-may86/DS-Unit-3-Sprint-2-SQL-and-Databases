@@ -56,3 +56,35 @@ question2_query4 = 'SELECT COUNT(character_ptr_id) as FighterCount FROM characte
 
 results2_4 = cursor.execute(question2_query4).fetchall()
 print(f'There are {results2_4} fighter characters')
+
+'''
+Question 3: How many total Items?
+'''
+
+question3_query = 'SELECT COUNT(item_id) as TotalItems FROM armory_item;'
+
+results3 = cursor.execute(question3_query).fetchall()
+print(f'There are {results3} items')
+
+'''
+Question 4: How many of the Items are weapons? How many are not?
+'''
+
+question4_query1 = 'SELECT COUNT(item_ptr_id) as TotalWeapons FROM armory_weapon;'
+
+results4_1 = cursor.execute(question4_query1).fetchall()
+print(f'There are {results4_1} total weapons in Items')
+
+question4_query2 = 'SELECT COUNT(item_id) - 37 as NonWeapons FROM armory_item;'
+
+results4_2 = cursor.execute(question4_query2).fetchall()
+print(f'There are {results4_2} non weapons in Items')
+
+'''
+Question 5: How many Items does each character have? (Return first 20 rows)
+'''
+
+question5_query = 'SELECT character_id, COUNT(character_id) as TotalItems from charactercreator_character_inventory GROUP BY character_id ORDER BY COUNT(character_id) DESC LIMIT 20;'
+
+results5 = cursor.execute(question5_query).fetchall()
+print(results5)
