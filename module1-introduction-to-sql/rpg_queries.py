@@ -111,7 +111,7 @@ print(f'Characters have on average {results7} items')
 Questioin 8: On average, how many Weapons does each character have?
 '''
 
-question8_query = 'SELECT CAST(COUNT(cci.character_id) as FLOAT) / COUNT(DISTINCT(cci.character_id)) as AverageWeapons FROM charactercreator_character_inventory as cci JOIN armory_weapon as aw ON cci.item_id = aw.item_ptr_id;'
+question8_query = 'SELECT AVG(weapon_count) as AverageWeapon FROM (SELECT c.character_id, COUNT(DISTINCT w.item_ptr_id) as weapon_count FROM charactercreator_character c LEFT JOIN charactercreator_character_inventory inv on c.character_id = inv.character_id LEFT JOIN armory_weapon w ON inv.item_id = w.item_ptr_id GROUP BY c.character_id) subquery'
 
 results8 = cursor.execute(question8_query).fetchall()
 print(f'Characters have on average {results8} weapons')
