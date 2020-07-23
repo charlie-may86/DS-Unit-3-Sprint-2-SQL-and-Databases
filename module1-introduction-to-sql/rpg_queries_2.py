@@ -5,8 +5,23 @@ from psycopg2.extras import execute_values
 import psycopg2
 import pandas as pd
 import numpy as np
-from psycopg2.extensions import register_adapter, AsIs
+# from psycopg2.extensions import register_adapter, AsIs
 
+# code to create the table
+'''
+CREATE TABLE titanic_table (
+  id SERIAL PRIMARY KEY,
+  survived INTEGER,
+  pclass INTEGER,
+  name  VARCHAR NOT NULL,
+  sex VARCHAR NOT NULL,
+  age FLOAT,
+  sib_spouse_count INTEGER,
+  parent_children_count INTEGER,
+  fare FLOAT
+);
+'''
+#code to avoid nan bugs - think
 psycopg2.extensions.register_adapter(np.int64, psycopg2._psycopg.AsIs)
 
 load_dotenv() #> loads contents of the .env file into the script's environment
