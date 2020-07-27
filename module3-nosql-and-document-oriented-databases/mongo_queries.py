@@ -1,4 +1,4 @@
-import pymongo
+from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
 
@@ -22,21 +22,23 @@ connection_uri = f"mongodb+srv://{DB_USER}:{DB_PASSWORD}@{CLUSTER_NAME}.mongodb.
 print("----------------")
 print("URI:", connection_uri)
 
-
-
-exit()
-
-client = pymongo.MongoClient(connection_uri)
+client = MongoClient(connection_uri)
 print("----------------")
 print("CLIENT:", type(client), client)
+print("DATABASES:", client.list_database_names())
 
-db = client.test_database # "test_database" or whatever you want to call it
+
+db = client.my_test_database # "test_database" or whatever you want to call it
 print("----------------")
 print("DB:", type(db), db)
+print("COLLECTIONS:", db.list_collection_names())
 
 collection = db.pokemon_test # "pokemon_test" or whatever you want to call it
 print("----------------")
 print("COLLECTION:", type(collection), collection)
+
+print("DOCUMENTS COUNT:", collection.count_documents({}))
+
 
 print("----------------")
 print("COLLECTIONS:")
