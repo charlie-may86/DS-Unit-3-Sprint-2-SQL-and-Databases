@@ -11,6 +11,8 @@ pipenv = "*"
 install = "*"
 python-dotenv = "*"
 psycopg2-binary = "*"
+pymongo = "*"
+dnspython = "*"
 
 [requires]
 python_version = "3.8"
