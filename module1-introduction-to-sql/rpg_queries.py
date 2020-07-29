@@ -16,7 +16,11 @@ print("CURSOR", cursor)
 # Write your query
 # query1 = "SELECT * FROM armory_weapon;"
 
+rpg_query = 'SELECT * FROM charactercreator_character;'
+rpg_data = cursor.execute(rpg_query).fetchall()
+print(rpg_data)
 
+exit()
 
 #result = cursor.execute(query)
 #print("RESULT", result) #> returns cursor object w/o results (need to fetch the results)

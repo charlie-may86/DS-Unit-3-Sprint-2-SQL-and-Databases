@@ -1,7 +1,43 @@
 from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
+import os
+import sqlite3
+import json
+import pandas as pd
 
+# get the data in a format to added to mongoDB
+DB_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "module1-introduction-to-sql", "rpg_db.sqlite3")
+
+connection = sqlite3.connect(DB_FILEPATH)
+print("CONNECTION:", connection)
+
+cursor = connection.cursor()
+print("CURSOR", cursor)
+
+rpg_query = 'SELECT * FROM charactercreator_character;'
+rpg_data = cursor.execute(rpg_query).fetchall()
+
+columns = ['character_id', 'name', 'level', 'exp', 'hp', 'strength', 'intelligence', 'dexterity', 'wisdom']
+
+rpg_df = pd.DataFrame(rpg_data, columns=columns)
+# print(rpg_df.head())
+
+rpg_df.reset_index(inplace=True)
+rpg_dict = rpg_df.to_dict('records')
+print(rpg_dict)
+
+# exit()
+# print(rpg_data, type(rpg_data))
+
+#convert to json
+
+# rpg_json = json.dumps(rpg_data)
+# print(rpg_json, type(rpg_json))
+# rpg_dict = dict(rpg_data)
+# print(rpg_dict, type(rpg_dict))
+
+# exit()
 
 # the code following the @ in the string below: cluster0.zqjps is the CLUSETER NAME
 
@@ -45,3 +81,11 @@ collection = db.rpg_test
 # this creates the table, or collection, which lives in the database 
 # we will insert the rpg data into this collection
 
+# need to fetch the data somehow. It exist somewhere.
+# step 1: find it
+# step 2: find a way to access it
+
+
+collection.insert_many(rpg_dict)
+
+print('DOCUMENTS COUNT:', collection.count_documents({}))
