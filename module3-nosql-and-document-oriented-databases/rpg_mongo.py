@@ -25,7 +25,8 @@ rpg_df = pd.DataFrame(rpg_data, columns=columns)
 
 rpg_df.reset_index(inplace=True)
 rpg_dict = rpg_df.to_dict('records')
-print(rpg_dict)
+# print(rpg_dict)
+
 
 # exit()
 # print(rpg_data, type(rpg_data))
@@ -67,7 +68,7 @@ print('DATABASES: ', client.list_database_names())
 # this break point allows you test the connection with client.list_database_names()
 # if it works, things are good so far
 # this is creating the connection between you and the MongoDB
-# breakpoint()
+breakpoint()
 
 db = client.rpg_database 
 # "test_database" or whatever you want to call it "rpg_database" in this case
