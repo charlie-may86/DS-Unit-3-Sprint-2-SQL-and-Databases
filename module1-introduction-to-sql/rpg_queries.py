@@ -29,7 +29,7 @@ Question 1: How many total Characters are there?
 
 question1_query = '''
 SELECT
-	COUNT(character_id)
+    COUNT(character_id)
 FROM
 	charactercreator_character;
 '''
@@ -168,7 +168,7 @@ Question 7: On average, how many Items does each Character have?
 
 question7_query = '''
 SELECT
-	ROUND(CAST(COUNT(character_id) AS Float) 
+	ROUND(CAST(COUNT(character_id) AS Float)
 	/ COUNT(DISTINCT (character_id)), 2) AS AverageItem
 FROM
 	charactercreator_character_inventory;
@@ -190,9 +190,9 @@ FROM (
 		COUNT(DISTINCT w.item_ptr_id) AS weapon_count
 	FROM
 		charactercreator_character c
-	LEFT JOIN charactercreator_character_inventory inv 
+	LEFT JOIN charactercreator_character_inventory inv
 	ON c.character_id = inv.character_id
-	LEFT JOIN armory_weapon w 
+	LEFT JOIN armory_weapon w
 	ON inv.item_id = w.item_ptr_id
 GROUP BY
 	c.character_id) subquery
