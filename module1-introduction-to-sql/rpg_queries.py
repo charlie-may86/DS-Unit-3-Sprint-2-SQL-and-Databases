@@ -35,7 +35,7 @@ FROM
 '''
 
 result1 = cursor.execute(question1_query).fetchall()
-print(f'There are {result1} total characters')
+print(f'Q1: There are {result1} total characters')
 
 '''
 Question 2: How many of each specific subclass?
@@ -49,7 +49,7 @@ FROM
 '''
 
 result2_1 = cursor.execute(question2_query1).fetchall()
-print(f'There are {result2_1} mage characters')
+print(f'Q2.1: There are {result2_1} mage characters')
 
 question2_query2 = '''
 SELECT
@@ -59,7 +59,7 @@ FROM
 '''
 
 results2_2 = cursor.execute(question2_query2).fetchall()
-print(f'There are {results2_2} theif characters')
+print(f'Q2.2: There are {results2_2} theif characters')
 
 question2_query3 = '''
 SELECT
@@ -69,7 +69,7 @@ FROM
 '''
 
 results2_3 = cursor.execute(question2_query3).fetchall()
-print(f'There are {results2_3} cleric characters')
+print(f'Q2.3: There are {results2_3} cleric characters')
 
 question2_query4 = '''
 SELECT
@@ -79,7 +79,7 @@ FROM
 '''
 
 results2_4 = cursor.execute(question2_query4).fetchall()
-print(f'There are {results2_4} fighter characters')
+print(f'Q2.4: There are {results2_4} fighter characters')
 
 '''
 Question 3: How many total Items?
@@ -93,7 +93,7 @@ FROM
 '''
 
 results3 = cursor.execute(question3_query).fetchall()
-print(f'There are {results3} items')
+print(f'Q3: There are {results3} items')
 
 '''
 Question 4: How many of the Items are weapons? How many are not?
@@ -107,7 +107,7 @@ FROM
 '''
 
 results4_1 = cursor.execute(question4_query1).fetchall()
-print(f'There are {results4_1} total weapons in Items')
+print(f'Q4.1: There are {results4_1} total weapons in Items')
 
 question4_query2 = '''
 SELECT
@@ -117,7 +117,7 @@ FROM
 '''
 
 results4_2 = cursor.execute(question4_query2).fetchall()
-print(f'There are {results4_2} non weapons in Items')
+print(f'Q4.2: There are {results4_2} non weapons in Items')
 
 '''
 Question 5: How many Items does each character have? (Return first 20 rows)
@@ -138,7 +138,7 @@ LIMIT 20;
 '''
 
 results5 = cursor.execute(question5_query).fetchall()
-print(results5)
+print(f'Q5: {results5}')
 
 '''
 Question 6: How many Weapons does each character have? (Return first 20 rows)
@@ -160,7 +160,7 @@ LIMIT 20;
 '''
 
 results6 = cursor.execute(question6_query).fetchall()
-print(results6)
+print(f'Q5: {results6}')
 
 '''
 Question 7: On average, how many Items does each Character have?
@@ -175,7 +175,7 @@ FROM
 '''
 
 results7 = cursor.execute(question7_query).fetchall()
-print(f'Characters have on average {results7} items')
+print(f'Q7: Characters have on average {results7} items')
 
 '''
 Questioin 8: On average, how many Weapons does each character have?
@@ -199,4 +199,4 @@ GROUP BY
 '''
 
 results8 = cursor.execute(question8_query).fetchall()
-print(f'Characters have on average {results8} weapons')
+print(f'Q8: Characters have on average {results8} weapons')
