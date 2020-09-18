@@ -160,7 +160,7 @@ LIMIT 20;
 '''
 
 results6 = cursor.execute(question6_query).fetchall()
-print(f'Q5: {results6}')
+print(f'Q6: {results6}')
 
 '''
 Question 7: On average, how many Items does each Character have?
