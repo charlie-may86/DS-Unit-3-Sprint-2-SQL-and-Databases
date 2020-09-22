@@ -43,11 +43,12 @@ CREATE TABLE IF NOT EXISTS rpg_characters (
 cursor.execute(create_character_table_query)
 conn.commit()
 
-for characters in characters:
-    insert_query = f'''INSERT INTO rpg_characters
-    (character_id, name, level, exp, hp, strength, intelligence, dexterity, wisdom) VALUES
-    {characters}
-    '''
 
-    cursor.execute(insert_query)
-conn.commit()
+# for characters in characters:
+#     insert_query = f'''INSERT INTO rpg_characters
+#     (character_id, name, level, exp, hp, strength, intelligence, dexterity, wisdom) VALUES
+#     {characters}
+#     '''
+
+#     cursor.execute(insert_query)
+# conn.commit()
